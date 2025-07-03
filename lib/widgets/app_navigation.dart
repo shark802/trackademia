@@ -180,8 +180,6 @@ class _AppNavigationState extends State<AppNavigation> {
       return;
     }
 
-    final index = _navigationItems.indexOf(item);
-
     switch (item.title) {
       case 'Dashboard':
         Navigator.pushReplacement(
@@ -195,7 +193,8 @@ class _AppNavigationState extends State<AppNavigation> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => FamilyListPage(userData: widget.userData ?? {}),
+            builder: (context) =>
+                FamilyListPage(userData: widget.userData ?? {}),
           ),
         );
         break;
@@ -203,7 +202,8 @@ class _AppNavigationState extends State<AppNavigation> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => StudentHistoryLocationPage(userData: widget.userData),
+            builder: (context) =>
+                StudentHistoryLocationPage(userData: widget.userData),
           ),
         );
         break;
@@ -211,7 +211,8 @@ class _AppNavigationState extends State<AppNavigation> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => FamilyBillingLogPage(userData: widget.userData ?? {}),
+            builder: (context) =>
+                FamilyBillingLogPage(userData: widget.userData ?? {}),
           ),
         );
         break;
@@ -253,7 +254,8 @@ class _AppNavigationState extends State<AppNavigation> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: isSelected ? FontWeight.w500 : FontWeight.w400,
-                    color: isSelected ? const Color(0xFF4CAF50) : Colors.grey[800],
+                    color:
+                        isSelected ? const Color(0xFF4CAF50) : Colors.grey[800],
                   ),
                 ),
               ],
@@ -344,9 +346,13 @@ class _AppNavigationState extends State<AppNavigation> {
               child: ListView(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 children: [
-                  ..._navigationItems.where((item) => !item.isBottom).map(_buildNavigationItem),
+                  ..._navigationItems
+                      .where((item) => !item.isBottom)
+                      .map(_buildNavigationItem),
                   const Divider(height: 16),
-                  ..._navigationItems.where((item) => item.isBottom).map(_buildNavigationItem),
+                  ..._navigationItems
+                      .where((item) => item.isBottom)
+                      .map(_buildNavigationItem),
                 ],
               ),
             ),
@@ -355,4 +361,4 @@ class _AppNavigationState extends State<AppNavigation> {
       ),
     );
   }
-} 
+}

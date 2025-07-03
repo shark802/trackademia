@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dashboard.dart';
-import '../main.dart';
-import 'user_info.dart';
 import 'family_list.dart';
 import 'Student_history_location.dart';
 import '../widgets/app_navigation.dart';
@@ -40,7 +38,7 @@ class SystemInfo {
 
 class SettingsPage extends StatefulWidget {
   final Map<String, dynamic>? userData;
-  
+
   const SettingsPage({
     super.key,
     this.userData,
@@ -61,22 +59,26 @@ class _SettingsPageState extends State<SettingsPage> {
   final List<FeatureConfig> _features = [
     FeatureConfig(
       title: 'Dashboard',
-      description: 'The main page showing an overview of your account and quick access to all features.',
+      description:
+          'The main page showing an overview of your account and quick access to all features.',
       icon: Icons.dashboard,
     ),
     FeatureConfig(
       title: 'Family Management',
-      description: 'View and manage your family members, including student profiles and information.',
+      description:
+          'View and manage your family members, including student profiles and information.',
       icon: Icons.family_restroom,
     ),
     FeatureConfig(
       title: 'Location Tracking',
-      description: 'Monitor your children\'s location and receive notifications when they enter or leave school premises.',
+      description:
+          'Monitor your children\'s location and receive notifications when they enter or leave school premises.',
       icon: Icons.location_on,
     ),
     FeatureConfig(
       title: 'Student History',
-      description: 'View detailed history of your children\'s attendance and location records.',
+      description:
+          'View detailed history of your children\'s attendance and location records.',
       icon: Icons.history,
       isNew: true,
     ),
@@ -94,7 +96,8 @@ class _SettingsPageState extends State<SettingsPage> {
     supportInfo: {
       'Email': 'support@trackademia.com',
       'Phone': '+1 (123) 456-7890',
-      'Hours': 'Monday to Friday: 8:00 AM - 5:00 PM\nSaturday: 9:00 AM - 1:00 PM\nSunday: Closed',
+      'Hours':
+          'Monday to Friday: 8:00 AM - 5:00 PM\nSaturday: 9:00 AM - 1:00 PM\nSunday: Closed',
     },
   );
 
@@ -155,7 +158,10 @@ class _SettingsPageState extends State<SettingsPage> {
                           CircleAvatar(
                             backgroundColor: Colors.grey[200],
                             child: Text(
-                              (widget.userData!['firstName'] as String?)?.substring(0, 1).toUpperCase() ?? '?',
+                              (widget.userData!['firstName'] as String?)
+                                      ?.substring(0, 1)
+                                      .toUpperCase() ??
+                                  '?',
                               style: TextStyle(
                                 color: Colors.grey[800],
                                 fontWeight: FontWeight.w500,
@@ -212,7 +218,8 @@ class _SettingsPageState extends State<SettingsPage> {
                               _buildSettingsTile(
                                 icon: Icons.security,
                                 title: 'Security',
-                                subtitle: 'Manage password and security settings',
+                                subtitle:
+                                    'Manage password and security settings',
                                 onTap: () {
                                   // Navigate to security settings
                                 },
@@ -281,7 +288,9 @@ class _SettingsPageState extends State<SettingsPage> {
                             // Features Section
                             _buildSectionHeader('Features'),
                             _buildSettingsCard(
-                              _features.map((feature) => _buildFeatureTile(feature)).toList(),
+                              _features
+                                  .map((feature) => _buildFeatureTile(feature))
+                                  .toList(),
                             ),
 
                             const SizedBox(height: 24),
@@ -432,7 +441,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DashboardPage(userData: widget.userData),
+                    builder: (context) =>
+                        DashboardPage(userData: widget.userData),
                   ),
                 );
                 break;
@@ -440,7 +450,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FamilyListPage(userData: widget.userData ?? {}),
+                    builder: (context) =>
+                        FamilyListPage(userData: widget.userData ?? {}),
                   ),
                 );
                 break;
@@ -448,7 +459,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => StudentHistoryLocationPage(userData: widget.userData),
+                    builder: (context) =>
+                        StudentHistoryLocationPage(userData: widget.userData),
                   ),
                 );
                 break;

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:developer' as developer;
-import 'dart:io' show Platform;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -17,7 +16,7 @@ class AuthService {
   Future<Map<String, dynamic>> login(String email, String password) async {
     try {
       developer.log('Making login request to $baseUrl');
-      
+
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {
@@ -35,7 +34,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseBody = json.decode(response.body);
-        
+
         if (responseBody['message'] == 'Login successful') {
           var user = responseBody['user'];
           // Create a standardized user data structure
@@ -46,11 +45,11 @@ class AuthService {
             'access': user['access'],
             'userCode': user['userCode'],
           };
-          
+
           // Save the standardized user data
           await _saveUserData(standardizedUserData);
           await _saveToken(responseBody['token'] ?? '');
-          
+
           return {
             'success': true,
             'message': 'Login successful',
@@ -111,4 +110,4 @@ class AuthService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tokenKey, token);
   }
-} 
+}

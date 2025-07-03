@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:developer' as developer;
 import 'services/auth_service.dart';
 import 'services/background_service.dart';
-import 'services/data_persistence_service.dart';
 import 'pages/splash_screen.dart';
 import 'pages/dashboard.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -11,7 +9,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize background service
+  print('Main: Initializing background service');
   await BackgroundService.initializeService();
+  print('Main: Background service initialized');
 
   // Request necessary permissions
   await _requestPermissions();
@@ -23,7 +23,7 @@ Future<void> _requestPermissions() async {
   // Request location permissions
   await Permission.location.request();
   await Permission.locationAlways.request();
-  
+
   // Request notification permissions
   await Permission.notification.request();
 }
@@ -36,12 +36,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Trackademia',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
           primary: Color(0xFF4CAF50),
+          onPrimary: Colors.white,
           secondary: Color(0xFF81C784),
+          onSecondary: Colors.white,
           surface: Colors.white,
+          onSurface: Colors.black,
           background: Color(0xFFF5F5F5),
+          onBackground: Colors.black,
+          error: Colors.red,
+          onError: Colors.white,
         ),
         useMaterial3: true,
       ),
@@ -57,7 +63,8 @@ class WelcomePage extends StatefulWidget {
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> with SingleTickerProviderStateMixin {
+class _WelcomePageState extends State<WelcomePage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeInAnimation;
   late Animation<Offset> _slideAnimation;
@@ -241,7 +248,7 @@ class _LoginPageState extends State<LoginPage> {
 
       // Login and get user data
       final loginResult = await AuthService().login(email, password);
-      
+
       if (!loginResult['success']) {
         throw Exception(loginResult['message']);
       }
@@ -365,7 +372,8 @@ class _LoginPageState extends State<LoginPage> {
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             labelText: 'Email',
-                            prefixIcon: const Icon(Icons.email, color: Color(0xFF4CAF50)),
+                            prefixIcon: const Icon(Icons.email,
+                                color: Color(0xFF4CAF50)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -375,7 +383,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(color: Color(0xFF4CAF50)),
+                              borderSide:
+                                  const BorderSide(color: Color(0xFF4CAF50)),
                             ),
                           ),
                         ),
@@ -385,7 +394,8 @@ class _LoginPageState extends State<LoginPage> {
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Password',
-                            prefixIcon: const Icon(Icons.lock, color: Color(0xFF4CAF50)),
+                            prefixIcon: const Icon(Icons.lock,
+                                color: Color(0xFF4CAF50)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -395,7 +405,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
-                              borderSide: const BorderSide(color: Color(0xFF4CAF50)),
+                              borderSide:
+                                  const BorderSide(color: Color(0xFF4CAF50)),
                             ),
                           ),
                         ),
