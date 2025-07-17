@@ -641,40 +641,13 @@ class _FamilyListPageState extends State<FamilyListPage> {
                 ],
               ),
               const SizedBox(height: 24),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildTextField(_fnameController, 'First Name', Icons.person, true),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: _buildTextField(_mnameController, 'Middle Name', Icons.person, true),
-                  ),
-                ],
-              ),
+              _buildTextField(_fnameController, 'First Name', Icons.person, true),
+              _buildTextField(_mnameController, 'Middle Name', Icons.person, true),
               _buildTextField(_lnameController, 'Last Name', Icons.person, true),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildTextField(_emailController, 'Email', Icons.email, false),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: _buildTextField(_numberController, 'Phone Number', Icons.phone, false),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: _buildTextField(_statusController, 'Status', Icons.info, true),
-                  ),
-                  const SizedBox(width: 16),
-                  Expanded(
-                    child: _buildTextField(_userCodeController, 'Family Code', Icons.code, true),
-                  ),
-                ],
-              ),
+              _buildTextField(_emailController, 'Email', Icons.email, false),
+              _buildTextField(_numberController, 'Phone Number', Icons.phone, false),
+              _buildTextField(_statusController, 'Status', Icons.info, true),
+              _buildTextField(_userCodeController, 'Family Code', Icons.code, true),
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
@@ -711,26 +684,31 @@ class _FamilyListPageState extends State<FamilyListPage> {
     bool isReadOnly,
   ) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: TextField(
         controller: controller,
         readOnly: isReadOnly,
+        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
         decoration: InputDecoration(
           prefixIcon: Icon(icon, color: const Color(0xFF4CAF50)),
           labelText: label,
+          labelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          hintText: 'Enter $label',
+          hintStyle: TextStyle(color: Colors.grey[400], fontSize: 15),
           filled: true,
           fillColor: isReadOnly ? Colors.grey[200] : Colors.white,
+          contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.grey[300]!),
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color(0xFF4CAF50), width: 2),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.grey[300]!),
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color(0xFF4CAF50), width: 2),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(color: Color(0xFF4CAF50)),
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(color: Color(0xFF388E3C), width: 2.5),
           ),
         ),
       ),
